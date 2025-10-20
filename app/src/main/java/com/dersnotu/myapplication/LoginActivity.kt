@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         val loginButton: Button = findViewById(R.id.loginButton)
         val registerTextView: TextView = findViewById(R.id.registerTextView)
 
-        // "Giriş Yap" butonuna tıklandığında...
+        // "Giriş Yap" butonuna tıklandığınd
         loginButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
