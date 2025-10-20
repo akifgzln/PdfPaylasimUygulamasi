@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "635740013307",
+    "project_id": "dersnotuplatformu-7746a",
+    "storage_bucket": "dersnotuplatformu-7746a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635740013307:android:b0f6470bb2a61c3c97a65e",
+        "android_client_info": {
+          "package_name": "com.dersnotu.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkmWyZGe3zErQq_Ss5db9anm0gXXqQf1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
