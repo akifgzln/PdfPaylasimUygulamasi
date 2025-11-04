@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/logoImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="147dp"
+        android:layout_height="122dp"
         android:layout_marginBottom="32dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:src="@drawable/giris_logo"
         app:layout_constraintBottom_toTopOf="@+id/emailInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
