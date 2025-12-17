@@ -1,115 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".DetailActivity"> <TextView
-    android:id="@+id/detailTitleTextView"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:text="Örnek Not Başlığı" />
+    android:background="@color/bg_app"
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:id="@+id/detailCourseTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailTitleTextView"
-        tools:text="Ders Adı" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/detailUploaderTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailCourseTextView"
-        tools:text="Yükleyen: Kullanıcı Adı" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="40dp">
 
-    <Button
-        android:id="@+id/downloadButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Notu İndir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailUploaderTextView" />
+            <FrameLayout
+                android:id="@+id/headerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
 
-    <ImageButton
-        android:id="@+id/likeButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@android:drawable/star_off"
-        app:layout_constraintBottom_toBottomOf="@+id/downloadButton"
-        app:layout_constraintStart_toEndOf="@+id/downloadButton"
-        app:layout_constraintTop_toTopOf="@+id/downloadButton"
-        tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/imgDetailHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@android:drawable/ic_menu_gallery"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"/>
 
-    <TextView
-        android:id="@+id/likeCountTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/likeButton"
-        app:layout_constraintStart_toEndOf="@+id/likeButton"
-        app:layout_constraintTop_toTopOf="@+id/likeButton" />
+                <View
+                    android:id="@+id/viewPdfHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/primary_dark"
+                    android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/commentsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Yorumlar:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/downloadButton" />
+                <LinearLayout
+                    android:id="@+id/layoutPdfIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:visibility="gone">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/commentsRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentsLabel" />
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/ic_bookmark_outline"
+                        app:tint="#FFFFFF"/>
 
-    <EditText
-        android:id="@+id/commentEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:hint="Yorum yaz..."
-        android:inputType="textMultiLine"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sendCommentButton"
-        app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PDF DOSYASI"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
 
-    <Button
-        android:id="@+id/sendCommentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gönder"
-        app:layout_constraintBottom_toBottomOf="@+id/commentEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/commentEditText" />
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/rounded_button_bg"
+                    android:src="@android:drawable/ic_menu_revert"
+                    android:padding="12dp"
+                    android:layout_gravity="top|start"
+                    app:tint="@color/primary_dark"/>
 
+                <ImageButton
+                    android:id="@+id/btnReport"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/rounded_button_bg"
+                    android:src="@android:drawable/stat_notify_error"
+                    android:padding="10dp"
+                    android:layout_gravity="top|end"
+                    app:tint="#D32F2F"/>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_top_bg"
+                android:layout_marginTop="-30dp"
+                android:padding="24dp"
+                android:elevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/tvDetailLesson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ders"
+                        android:textColor="@color/primary_purple"
+                        android:textStyle="bold"
+                        android:background="@drawable/search_bg"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp"/>
+
+                    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvDetailUploader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textColor="@color/text_grey"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDetailTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Başlık"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"
+                    android:layout_marginBottom="16dp"/>
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="4dp"
+                    android:background="@color/primary_purple"
+                    android:layout_marginBottom="24dp"/>
+
+                <TextView
+                    android:id="@+id/tvDetailContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="İçerik..."
+                    android:textSize="16sp"
+                    android:textColor="#444444"
+                    android:lineSpacingExtra="6dp"/>
+
+                <Button
+                    android:id="@+id/btnOpenPdf"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="📄  PDF Dosyasını Görüntüle"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/primary_dark"
+                    android:layout_marginTop="32dp"
+                    app:cornerRadius="12dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

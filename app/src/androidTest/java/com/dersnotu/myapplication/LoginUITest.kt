@@ -1,11 +1,12 @@
 package com.dersnotu.myapplication
 
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,19 +14,33 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class LoginUITest {
 
-    // Bu kural, test başladığında otomatik olarak LoginActivity'yi açar
     @get:Rule
     val activityRule = ActivityScenarioRule(LoginActivity::class.java)
 
     @Test
-    fun giris_ekrani_elemanlari_gorunuyor_mu() {
-        // 1. Email kutusu ekranda görünüyor mu kontrol et
-        onView(withId(R.id.emailInput)).check(matches(isDisplayed()))
+    fun kullanici_GirisYapabilmeli() {
+        // Biraz bekle ki ekranın açıldığını gör (1.5 saniye)
+        Thread.sleep(1500)
 
-        // 2. Şifre kutusu ekranda görünüyor mu kontrol et
-        onView(withId(R.id.passwordInput)).check(matches(isDisplayed()))
+        // 1. Email yaz
+        onView(withId(R.id.etEmail))
+            .perform(typeText("ogrenci@test.com"), closeSoftKeyboard())
 
-        // 3. Giriş butonu ekranda görünüyor mu kontrol et
-        onView(withId(R.id.loginButton)).check(matches(isDisplayed()))
+        // Yazdığını gör diye bekle
+        Thread.sleep(1000)
+
+        // 2. Şifre yaz ve KLAVYEYİ KAPAT (Kritik nokta burası)
+        onView(withId(R.id.etPassword))
+            .perform(typeText("123456"), closeSoftKeyboard())
+
+        // Yazdığını gör diye bekle
+        Thread.sleep(1000)
+
+        // 3. Giriş Yap butonuna tıkla
+        onView(withId(R.id.btnLogin))
+            .perform(click())
+
+        // Tıklandığını gör diye bekle
+        Thread.sleep(2000)
     }
 }

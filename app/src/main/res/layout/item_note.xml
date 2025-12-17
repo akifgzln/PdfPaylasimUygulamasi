@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/card_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- NOT PREVIEW -->
+        <ImageView
+            android:id="@+id/imgNotePreview"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:visibility="gone"/>
+
+        <!-- CONTENT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Ders adı ve tarih -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvLessonName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matematik"
+                    android:textColor="@color/primary_purple"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 saat önce"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_grey"/>
+            </LinearLayout>
+
+            <!-- Başlık -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Not Başlığı"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_dark"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- İçerik -->
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Not içeriği buraya gelecek..."
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:textColor="#555555"
+                android:lineSpacingExtra="4dp"/>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0"
+                android:layout_marginVertical="16dp"/>
+
+            <!-- Alt butonlar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <!-- Yükleyen kişi -->
+                <TextView
+                    android:id="@+id/tvUploader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Öğrenci"
+                    android:textSize="13sp"
+                    android:textStyle="italic"
+                    android:textColor="@color/text_grey"/>
+
+                <!-- LIKE BUTTON -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageButton
+                        android:id="@+id/btnLike"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_heart_empty" />
+
+                    <TextView
+                        android:id="@+id/tvLikeCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_grey"
+                        android:textStyle="bold"
+                        android:layout_marginStart="6dp"/>
+                </LinearLayout>
+
+                <!-- COMMENT BUTTON -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:padding="4dp"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageButton
+                        android:id="@+id/btnComment"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/outline_add_comment_24" />
+
+                    <TextView
+                        android:id="@+id/tvCommentCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_grey"
+                        android:textStyle="bold"
+                        android:layout_marginStart="6dp"/>
+                </LinearLayout>
+
+                <!-- SAVE BUTTON -->
+                <ImageButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_bookmark_outline" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

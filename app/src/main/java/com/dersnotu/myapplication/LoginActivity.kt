@@ -1,12 +1,13 @@
-package com.dersnotu.myapplication // DİKKAT: Burası senin paket adınla aynı olmalı
+package com.dersnotu.myapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri // Linki açmak için gerekli kütüphane
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -19,37 +20,62 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val emailInput: EditText = findViewById(R.id.emailInput)
-        val passwordInput: EditText = findViewById(R.id.passwordInput)
-        val loginButton: Button = findViewById(R.id.loginButton)
-        val registerTextView: TextView = findViewById(R.id.registerTextView)
+        // Kullanıcı giriş yapmışsa direkt menüye git
+        if (auth.currentUser != null) {
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
 
-        // "Giriş Yap" butonuna tıklandığınd
-        loginButton.setOnClickListener {
-            val email = emailInput.text.toString().trim()
-            val password = passwordInput.text.toString().trim()
+        // --- ID TANIMLAMALARI ---
+        val etEmail = findViewById<EditText>(R.id.etEmail)
+        val etPassword = findViewById<EditText>(R.id.etPassword)
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val tvRegister = findViewById<TextView>(R.id.tvRegister)
+        val tvForgotPassword = findViewById<TextView>(R.id.tvForgotPassword)
+        val tvPrivacyPolicy = findViewById<TextView>(R.id.tvPrivacyPolicy)
+
+        // --- GİRİŞ YAP BUTONU ---
+        btnLogin.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Lütfen tüm alanları doldurun.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Lütfen tüm alanları doldurun!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // GİRİŞ BAŞARILI! Henüz Ana Sayfa olmadığı için sadece mesaj göster.
-                        Toast.makeText(this, "Giriş başarılı! (Ana Sayfa birazdan eklenecek)", Toast.LENGTH_LONG).show()
-                        // Ana Sayfayı ekleyince buraya yönlendirme kodunu koyacağız
-                    } else {
-                        // Giriş başarısız
-                        Toast.makeText(this, "Giriş başarısız: E-posta veya şifre hatalı.", Toast.LENGTH_LONG).show()
-                    }
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Giriş Başarılı! 👋", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MenuActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 }
         }
 
-        // "Kayıt Ol" linkine tıklandığında Kayıt Ol ekranına git (Burası doğru)
-        registerTextView.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
+        // --- KAYIT OL EKRANINA GİT ---
+        tvRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        // --- ŞİFREMİ UNUTTUM EKRANINA GİT ---
+        tvForgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        }
+
+        // --- GİZLİLİK POLİTİKASI (LİNK ENTEGRASYONU) ---
+        tvPrivacyPolicy.setOnClickListener {
+            // Senin verdiğin linki burada tanımlıyoruz
+            val url = "https://doc-hosting.flycricket.io/studify-privacy-policy/e9d8be63-7e43-4433-8e44-e92c38ea7e36/privacy"
+
+            // Linki tarayıcıda açacak komut (Intent)
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
             startActivity(intent)
         }
     }

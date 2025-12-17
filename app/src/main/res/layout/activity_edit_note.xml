@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notu Düzenle ✏"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ders Seçimi:"
+        android:layout_marginBottom="4dp"/>
+
+    <Spinner
+        android:id="@+id/spEditLesson"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/etEditTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Konu Başlığı"
+        android:padding="16dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/etEditContent"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:hint="İçerik / Açıklama"
+        android:gravity="top|start"
+        android:padding="16dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <Button
+            android:id="@+id/btnChangeFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dosya Değiştir 📎"
+            android:textSize="12sp"
+            android:backgroundTint="#2196F3"/>
+
+        <TextView
+            android:id="@+id/tvNewFileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yeni dosya seçilmedi"
+            android:layout_marginStart="12dp"
+            android:textColor="#666666"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnUpdateNote"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Değişiklikleri Kaydet ✅"
+        android:textSize="18sp"
+        android:backgroundTint="#4CAF50"/>
+
+</LinearLayout>
